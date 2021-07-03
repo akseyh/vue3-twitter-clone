@@ -24,6 +24,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
 
 .app {
@@ -37,7 +38,7 @@ export default {
 }
 
 .app__view {
-  width: 700px;
+  width: 600px;
   height: 100vh;
   border-right: 1px solid rgb(56, 68, 77);
   border-left: 1px solid rgb(56, 68, 77);
