@@ -21,7 +21,29 @@ export default createStore({
       }
     ],
     likedTweets: [],
-    reTweets: []
+    reTweets: [],
+    agendas: [
+      {
+        title: '#tosuncukdönüyor',
+        count: '15,3 B Tweet'
+      },
+      {
+        title: '#tosuncukdönüyor',
+        count: '15,3 B Tweet'
+      },
+      {
+        title: '#tosuncukdönüyor',
+        count: '15,3 B Tweet'
+      },
+      {
+        title: '#tosuncukdönüyor',
+        count: '15,3 B Tweet'
+      },
+      {
+        title: '#tosuncukdönüyor',
+        count: '15,3 B Tweet'
+      },
+    ]
   },
   mutations: {
     SET_NAME(state, val) {
