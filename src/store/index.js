@@ -10,7 +10,7 @@ export default createStore({
       {
         id: 0,
         content: 'Hello World!',
-        date: '03 Jul 2020',
+        date: new Date(),
         user: {
           name: 'Şems',
           username: '@akseyh'
@@ -19,11 +19,43 @@ export default createStore({
         retweets: 0,
         comments: 0
       }
-    ]
+    ],
+    likedTweets: [],
+    reTweets: []
   },
   mutations: {
     CREATE_TWEET(state, payload) {
       state.tweets = [...state.tweets, { ...payload, id: state.tweets.length, likes: 0, retweets: 0, comments: 0 }]
+    },
+    LIKE_TWEET(state, id) {
+      if (!state.likedTweets.includes(id)) {
+        state.tweets = state.tweets.map(el => {
+          if (el.id === id) el = { ...el, likes: el.likes + 1 }
+          return el
+        })
+        state.likedTweets.push(id)
+      } else {
+        state.tweets = state.tweets.map(el => {
+          if (el.id === id) el = { ...el, likes: el.likes - 1 }
+          return el
+        })
+        state.likedTweets = state.likedTweets.filter(el => el !== id)
+      }
+    },
+    RE_TWEET(state, id) {
+      if (!state.reTweets.includes(id)) {
+        state.tweets = state.tweets.map(el => {
+          if (el.id === id) el = { ...el, retweets: el.retweets + 1 }
+          return el
+        })
+        state.reTweets.push(id)
+      } else {
+        state.tweets = state.tweets.map(el => {
+          if (el.id === id) el = { ...el, retweets: el.retweets - 1 }
+          return el
+        })
+        state.reTweets = state.reTweets.filter(el => el !== id)
+      }
     }
   },
   actions: {

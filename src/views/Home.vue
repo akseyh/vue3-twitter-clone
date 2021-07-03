@@ -2,7 +2,15 @@
   <header class="home__header">Anasayfa</header>
   <TweetInput />
   <div class="home__contents">
-    <Tweet v-for="tweet in tweets" :key="tweet.id" :tweet="tweet" />
+    <Tweet
+      v-for="tweet in tweets"
+      :key="tweet.id"
+      :tweet="tweet"
+      :isLikedByMe="likedTweets.includes(tweet.id)"
+      :isRetweetedByMe="reTweets.includes(tweet.id)"
+      @likeTweet="likeTweet"
+      @reTweet="reTweet"
+    />
   </div>
 </template>
 
@@ -17,10 +25,26 @@ export default {
   setup() {
     const store = useStore();
 
-    const tweets = computed(() => store.state.tweets.reverse());
+    const tweets = computed(() =>
+      store.state.tweets.sort((a, b) => b.date - a.date)
+    );
+
+    const likedTweets = computed(() => store.state.likedTweets);
+    const reTweets = computed(() => store.state.reTweets);
+
+    function likeTweet(id) {
+      store.commit("LIKE_TWEET", id);
+    }
+    function reTweet(id) {
+      store.commit("RE_TWEET", id);
+    }
 
     return {
       tweets,
+      likeTweet,
+      reTweet,
+      likedTweets,
+      reTweets,
     };
   },
 };

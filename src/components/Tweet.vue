@@ -8,17 +8,25 @@
       </div>
       <div class="tweet__content">{{ tweet.content }}</div>
       <div class="tweet__analytics">
-        <div class="tweet__analytic">
+        <div class="tweet__analytic tweet__analytic--comments">
           <CommentIcon class="icon" />
           <span>{{ tweet.comments }}</span>
         </div>
-        <div class="tweet__analytic">
-          <HeartIcon class="icon" />
-          <span>{{ tweet.likes }}</span>
-        </div>
-        <div class="tweet__analytic">
+        <div
+          class="tweet__analytic tweet__analytic--retweets"
+          :class="{ 'tweet__analytic--active': isRetweetedByMe }"
+          @click="$emit('reTweet', tweet.id)"
+        >
           <RetweetIcon class="icon" />
           <span>{{ tweet.retweets }}</span>
+        </div>
+        <div
+          class="tweet__analytic tweet__analytic--likes"
+          :class="{ 'tweet__analytic--active': isLikedByMe }"
+          @click="$emit('likeTweet', tweet.id)"
+        >
+          <HeartIcon class="icon" />
+          <span>{{ tweet.likes }}</span>
         </div>
       </div>
     </div>
@@ -35,6 +43,14 @@ export default {
     tweet: {
       type: Object,
       required: true,
+    },
+    isLikedByMe: {
+      type: Boolean,
+      default: false,
+    },
+    isRetweetedByMe: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
@@ -92,11 +108,41 @@ export default {
 .tweet__analytics .tweet__analytic {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 30px;
+}
+.tweet__analytics .tweet__analytic--likes:hover {
+  color: rgb(224, 36, 94);
+}
+.tweet__analytics .tweet__analytic--likes:hover > .icon {
+  fill: rgb(224, 36, 94);
+}
+.tweet__analytics .tweet__analytic--likes.tweet__analytic--active {
+  color: rgb(224, 36, 94);
+}
+.tweet__analytics .tweet__analytic--likes.tweet__analytic--active .icon {
+  fill: rgb(224, 36, 94);
+}
+.tweet__analytics .tweet__analytic--comments:hover {
+  color: rgb(29, 161, 242);
+}
+.tweet__analytics .tweet__analytic--comments:hover > .icon {
+  fill: rgb(29, 161, 242);
+}
+.tweet__analytics .tweet__analytic--retweets:hover {
+  color: rgb(23, 191, 99);
+}
+.tweet__analytics .tweet__analytic--retweets:hover > .icon {
+  fill: rgb(23, 191, 99);
+}
+.tweet__analytics .tweet__analytic--retweets.tweet__analytic--active {
+  color: rgb(23, 191, 99);
+}
+.tweet__analytics .tweet__analytic--retweets.tweet__analytic--active .icon {
+  fill: rgb(23, 191, 99);
 }
 .tweet__analytics .tweet__analytic .icon {
   fill: gray;
   width: 20px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 </style>
