@@ -11,6 +11,9 @@ export default createStore({
     ]
   },
   mutations: {
+    CREATE_TWEET(state, payload) {
+      state.tweets = [...state.tweets, payload]
+    }
   },
   actions: {
   },
