@@ -2,7 +2,11 @@
   <div class="tweet-input">
     <div class="tweet-input__user-icon"></div>
     <div class="tweet-input__input">
-      <input placeholder="Neler oluyor?" v-model="tweet" />
+      <input
+        placeholder="Neler oluyor?"
+        v-model="tweet"
+        @keypress.enter="createTweet"
+      />
       <CustomButton
         class="button"
         :disabled="!tweet.length"
