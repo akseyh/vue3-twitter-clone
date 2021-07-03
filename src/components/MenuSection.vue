@@ -1,9 +1,9 @@
 <template>
   <div class="menu-section">
-    <div>
+    <div class="menu-section__wrapper">
       <logo-icon class="menu-section__logo" />
       <div class="menu-section__items">
-        <div class="menu-section__item">
+        <div class="menu-section__item menu-section__item--active">
           <HomeIcon class="icon" />
           <span>Anasayfa</span>
         </div>
@@ -36,7 +36,20 @@
           <span>Daha Fazla</span>
         </div>
       </div>
-      <button>Tweetle</button>
+      <button class="menu-section__button">
+        <span class="menu-section__button--lg">Tweetle</span>
+        <span class="menu-section__button--sm">
+          <NewTweetIcon class="menu-section__button-icon" />
+        </span>
+      </button>
+    </div>
+    <div class="menu-section__user">
+      <div class="menu-section__user-icon"></div>
+      <div class="menu-section__user-info">
+        <span class="name">Şems Yılmaz</span>
+        <span class="username">@akseyh</span>
+      </div>
+      <div class="menu-section__more"></div>
     </div>
   </div>
 </template>
@@ -51,6 +64,7 @@ import FlagIcon from "../assets/Flag.vue";
 import ListIcon from "../assets/List.vue";
 import UserIcon from "../assets/User.vue";
 import MoreIcon from "../assets/More.vue";
+import NewTweetIcon from "../assets/NewTweet.vue";
 export default {
   name: "MenuSection",
   components: {
@@ -63,16 +77,22 @@ export default {
     ListIcon,
     UserIcon,
     MoreIcon,
+    NewTweetIcon,
   },
 };
 </script>
 
 <style scoped>
 .menu-section {
+  box-sizing: border-box;
   width: 275px;
   min-width: 275px;
   height: 100vh;
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .menu-section__items {
@@ -82,16 +102,17 @@ export default {
 
 .menu-section__item {
   width: min-content;
-  padding: 15px;
+  padding: 10px 15px;
+  margin: 5px 0 0 -15px;
   border-radius: 30px;
   font-weight: 700;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.2s;
-  margin-left: -15px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .menu-section__item:hover {
@@ -114,6 +135,14 @@ export default {
   fill: #1fa1f1;
 }
 
+.menu-section__item--active {
+  color: #1fa1f1;
+}
+
+.menu-section__item--active .icon {
+  fill: #1fa1f1;
+}
+
 .menu-section__logo {
   fill: #fff;
   width: 30px;
@@ -128,10 +157,152 @@ export default {
   background: rgba(29, 161, 242, 0.1);
 }
 
+.menu-section__button {
+  width: 250px;
+  padding: 15px 20px;
+  background: #1fa1f1;
+  border-radius: 50px;
+  border: 0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-section__button:hover {
+  background: #097fc9;
+}
+
+.menu-section__button--sm {
+  display: none;
+}
+
+.menu-section__user {
+  width: 90%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-section__user:hover {
+  background: rgba(29, 161, 242, 0.1);
+}
+
+.menu-section__user-icon {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: gray;
+}
+
+.menu-section__user-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  font-size: 1rem;
+}
+
+.menu-section__user-info .name {
+  font-weight: 600;
+}
+
+.menu-section__user-info .username {
+  font-weight: 100;
+  color: gray;
+}
+
 @media only screen and (max-width: 1250px) {
   .menu-section {
-    width: 90px;
-    min-width: 90px;
+    width: 70px;
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-section__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-section__items {
+    align-items: center;
+  }
+
+  .menu-section__item {
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-section__item .icon {
+    margin: 0;
+  }
+
+  .menu-section__item span {
+    display: none;
+  }
+
+  .menu-section__button {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  .menu-section__button:hover {
+    background: rgba(29, 161, 242, 0.1);
+  }
+
+  .menu-section__button-icon {
+    fill: #fff;
+    width: 20px;
+  }
+
+  .menu-section__button--lg {
+    display: none;
+  }
+
+  .menu-section__button--sm {
+    display: flex;
+  }
+
+  .menu-section__user {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+  }
+
+  .menu-section__user-info {
+    display: none;
+  }
+  .menu-section__more {
+    display: none;
+  }
+
+  .menu-section__user-icon {
+    margin: 0;
+    width: 40px;
+    height: 40px;
   }
 }
 </style>

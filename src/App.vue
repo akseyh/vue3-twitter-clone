@@ -43,4 +43,9 @@ export default {
   border-right: 1px solid rgb(56, 68, 77);
   border-left: 1px solid rgb(56, 68, 77);
 }
+@media only screen and (max-width: 1100px) {
+  .app__view {
+    width: 100%;
+  }
+}
 </style>
