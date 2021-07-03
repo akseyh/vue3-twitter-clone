@@ -8,8 +8,8 @@
 
 <style scoped>
 .sidebar {
-  width: 275px;
-  min-width: 275px;
+  width: 350px;
+  min-width: 350px;
   height: 100vh;
   display: flex;
   flex-direction: column;
