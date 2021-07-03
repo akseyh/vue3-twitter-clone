@@ -122,10 +122,11 @@ export default createStore({
         state.reTweets = state.reTweets.filter(el => el !== id)
       }
     },
-    LOGIN(state) {
+    LOGIN(state, username) {
       const token = Math.floor(Math.random() * 1000);
       localStorage.setItem('token', token)
       state.token = token
+      state.user.username = username || 'akseyh'
     },
     LOGOUT(state) {
       localStorage.removeItem('token')

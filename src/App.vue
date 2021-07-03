@@ -6,7 +6,7 @@
     </div>
     <sidebar />
   </div>
-  <div v-else>
+  <div class="app__login" v-else>
     <router-view />
   </div>
 </template>
@@ -57,6 +57,13 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background: #15202b;
+  color: #fff;
+}
+
+.app__login {
+  width: 100%;
+  height: 100vh;
   background: #15202b;
   color: #fff;
 }
