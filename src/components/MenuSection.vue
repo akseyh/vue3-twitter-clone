@@ -46,8 +46,8 @@
     <div class="menu-section__user">
       <div class="menu-section__user-icon"></div>
       <div class="menu-section__user-info">
-        <span class="name">Şems Yılmaz</span>
-        <span class="username">@akseyh</span>
+        <input class="name user-input" v-model="name" />
+        <input class="username user-input" v-model="username" />
       </div>
       <div class="menu-section__more"></div>
     </div>
@@ -65,6 +65,8 @@ import ListIcon from "../assets/List.vue";
 import UserIcon from "../assets/User.vue";
 import MoreIcon from "../assets/More.vue";
 import NewTweetIcon from "../assets/NewTweet.vue";
+import { useStore } from "vuex";
+import { computed } from "@vue/runtime-core";
 export default {
   name: "MenuSection",
   components: {
@@ -78,6 +80,28 @@ export default {
     UserIcon,
     MoreIcon,
     NewTweetIcon,
+  },
+  setup() {
+    const store = useStore();
+
+    const name = computed({
+      get: () => store.state.user.name,
+      set: (val) => {
+        store.commit("SET_NAME", val);
+      },
+    });
+
+    const username = computed({
+      get: () => "@" + store.state.user.username,
+      set: (val) => {
+        store.commit("SET_USERNAME", val.substring(1));
+      },
+    });
+
+    return {
+      name,
+      username,
+    };
   },
 };
 </script>
@@ -197,7 +221,9 @@ export default {
 .menu-section__user-icon {
   margin-right: 10px;
   width: 50px;
+  min-width: 50px;
   height: 50px;
+  min-height: 50px;
   border-radius: 100%;
   background: gray;
 }
@@ -213,11 +239,23 @@ export default {
 
 .menu-section__user-info .name {
   font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
 }
 
 .menu-section__user-info .username {
   font-weight: 100;
   color: gray;
+  font-size: 0.8rem;
+}
+
+.menu-section__user-info .user-input {
+  background: transparent;
+  border: 0;
+}
+
+.menu-section__user-info .user-input:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 1250px) {

@@ -4,7 +4,7 @@
     <div class="tweet__detail">
       <div class="tweet__user-info">
         <span class="name">{{ tweet.user.name }}</span>
-        <span class="username">{{ tweet.user.username }}</span>
+        <span class="username">@{{ tweet.user.username }}</span>
       </div>
       <div class="tweet__content">{{ tweet.content }}</div>
       <div class="tweet__analytics">

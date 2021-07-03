@@ -29,7 +29,7 @@ export default {
       if (!tweet.value.length) return;
       const payload = {
         content: tweet.value,
-        user: store.state.user,
+        user: { ...store.state.user },
         date: new Date(),
       };
       store.commit("CREATE_TWEET", payload);

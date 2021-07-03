@@ -4,7 +4,7 @@ export default createStore({
   state: {
     user: {
       name: 'Şems',
-      username: '@akseyh'
+      username: 'akseyh'
     },
     tweets: [
       {
@@ -13,9 +13,9 @@ export default createStore({
         date: new Date(),
         user: {
           name: 'Şems',
-          username: '@akseyh'
+          username: 'akseyh'
         },
-        likes: 0,
+        likes: 999,
         retweets: 0,
         comments: 0
       }
@@ -24,6 +24,12 @@ export default createStore({
     reTweets: []
   },
   mutations: {
+    SET_NAME(state, val) {
+      state.user.name = val
+    },
+    SET_USERNAME(state, val) {
+      state.user.username = val
+    },
     CREATE_TWEET(state, payload) {
       state.tweets = [...state.tweets, { ...payload, id: state.tweets.length, likes: 0, retweets: 0, comments: 0 }]
     },
