@@ -3,7 +3,6 @@
     <div class="tweet-input__user-icon"></div>
     <div class="tweet-input__input">
       <input placeholder="Neler oluyor?" v-model="tweet" />
-      <div class="divider"></div>
       <CustomButton
         class="button"
         :disabled="!tweet.length"
@@ -34,6 +33,7 @@ export default {
         date: new Date(),
       };
       store.commit("CREATE_TWEET", payload);
+      tweet.value = "";
     }
 
     return {
@@ -47,7 +47,7 @@ export default {
 <style scoped>
 .tweet-input {
   border-bottom: 5px solid rgb(56, 68, 77);
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   display: flex;
 }
 .tweet-input__user-icon {
@@ -62,8 +62,7 @@ export default {
 }
 .tweet-input__input {
   width: 100%;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -76,9 +75,5 @@ export default {
 }
 .tweet-input__input input:focus {
   outline: none;
-}
-.tweet-input__input .divider {
-  border-bottom: 1px solid rgb(56, 68, 77);
-  margin: 10px 0;
 }
 </style>
