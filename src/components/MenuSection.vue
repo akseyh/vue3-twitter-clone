@@ -36,7 +36,7 @@
           <span>Daha Fazla</span>
         </div>
       </div>
-      <button class="menu-section__button">
+      <button class="menu-section__button" @click="logout">
         <span class="menu-section__button--lg">Tweetle</span>
         <span class="menu-section__button--sm">
           <NewTweetIcon class="menu-section__button-icon" />
@@ -67,6 +67,7 @@ import MoreIcon from "../assets/More.vue";
 import NewTweetIcon from "../assets/NewTweet.vue";
 import { useStore } from "vuex";
 import { computed } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 export default {
   name: "MenuSection",
   components: {
@@ -83,6 +84,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
 
     const name = computed({
       get: () => store.state.user.name,
@@ -98,9 +100,15 @@ export default {
       },
     });
 
+    function logout() {
+      store.commit("LOGOUT");
+      router.push({ name: "Login" });
+    }
+
     return {
       name,
       username,
+      logout,
     };
   },
 };

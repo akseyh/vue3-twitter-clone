@@ -1,21 +1,45 @@
 <template>
-  <div class="app">
+  <div class="app" v-if="isLoggedIn">
     <menu-section />
     <div class="app__view">
       <router-view />
     </div>
     <sidebar />
   </div>
+  <div v-else>
+    <router-view />
+  </div>
 </template>
 
 <script>
 import Sidebar from "./components/Sidebar.vue";
 import MenuSection from "./components/MenuSection.vue";
+import { useStore } from "vuex";
+import { computed } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 export default {
   name: "App",
   components: {
     Sidebar,
     MenuSection,
+  },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const isLoggedIn = computed(() => !!store.state.token);
+
+    store.commit("SET_TOKEN");
+
+    if (!isLoggedIn.value) {
+      router.push({ name: "Login" });
+    } else {
+      router.push({ name: "Home" });
+    }
+
+    return {
+      isLoggedIn,
+    };
   },
 };
 </script>

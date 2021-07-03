@@ -6,6 +6,7 @@ export default createStore({
       name: 'Şems',
       username: 'akseyh'
     },
+    token: null,
     tweets: [
       {
         id: 3,
@@ -120,10 +121,22 @@ export default createStore({
         })
         state.reTweets = state.reTweets.filter(el => el !== id)
       }
+    },
+    LOGIN(state) {
+      const token = Math.floor(Math.random() * 1000);
+      localStorage.setItem('token', token)
+      state.token = token
+    },
+    LOGOUT(state) {
+      localStorage.removeItem('token')
+      state.token = null
+    },
+    SET_TOKEN(state) {
+      state.token = localStorage.getItem('token') || null
     }
   },
   actions: {
   },
   modules: {
-  }
+  },
 })
