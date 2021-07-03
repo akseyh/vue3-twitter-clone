@@ -27,8 +27,11 @@ export default {
     const tweet = ref("");
 
     function createTweet() {
+      if (!tweet.value.length) return;
       const payload = {
-        content: "123",
+        content: tweet.value,
+        user: store.state.user,
+        date: new Date(),
       };
       store.commit("CREATE_TWEET", payload);
     }

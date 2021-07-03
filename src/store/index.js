@@ -2,11 +2,18 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    user: {
+      name: 'Şems',
+      username: '@akseyh'
+    },
     tweets: [
       {
         content: 'Hello World!',
         date: '03 Jul 2020',
-        user: 'Şems'
+        user: {
+          name: 'Şems',
+          username: '@akseyh'
+        }
       }
     ]
   },
