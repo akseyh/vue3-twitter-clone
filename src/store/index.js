@@ -8,6 +8,42 @@ export default createStore({
     },
     tweets: [
       {
+        id: 3,
+        content: 'Yeni tweet oluşturmayı deneyin!',
+        date: new Date(),
+        user: {
+          name: 'Şems',
+          username: 'akseyh'
+        },
+        likes: 100,
+        retweets: 100,
+        comments: 100
+      },
+      {
+        id: 2,
+        content: 'Sol alttaki alandan isim ve kullanıcı adınızı değiştirebilirsiniz.',
+        date: new Date(),
+        user: {
+          name: 'Şems',
+          username: 'akseyh'
+        },
+        likes: 0,
+        retweets: 6,
+        comments: 2
+      },
+      {
+        id: 1,
+        content: 'Tweetlerin altındaki ikonlara tıklayarak like ve retweet yapabilirsiniz.',
+        date: new Date(),
+        user: {
+          name: 'Şems',
+          username: 'akseyh'
+        },
+        likes: 20,
+        retweets: 0,
+        comments: 10
+      },
+      {
         id: 0,
         content: 'Hello World!',
         date: new Date(),
@@ -20,8 +56,8 @@ export default createStore({
         comments: 0
       }
     ],
-    likedTweets: [],
-    reTweets: [],
+    likedTweets: [1, 3],
+    reTweets: [2, 3],
     agendas: [
       {
         title: '#tosuncukdönüyor',

@@ -28,7 +28,7 @@ export default {
     const store = useStore();
 
     const tweets = computed(() =>
-      store.state.tweets.sort((a, b) => b.date - a.date)
+      store.state.tweets.sort((a, b) => b.id - a.id)
     );
 
     const likedTweets = computed(() => store.state.likedTweets);
