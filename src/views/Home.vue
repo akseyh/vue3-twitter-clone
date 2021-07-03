@@ -65,6 +65,6 @@ export default {
 .home__contents {
   box-sizing: border-box;
   height: calc(100% - 180px);
-  overflow: scroll;
+  overflow-x: scroll;
 }
 </style>

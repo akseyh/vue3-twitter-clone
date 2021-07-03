@@ -98,6 +98,8 @@ export default {
   color: lightgray;
 }
 .tweet__content {
+  margin-top: 10px;
+  font-weight: 100;
   font-size: 1rem;
 }
 .tweet__analytics {
